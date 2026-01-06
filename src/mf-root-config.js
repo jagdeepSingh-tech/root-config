@@ -1,8 +1,21 @@
 import { registerApplication, start } from "single-spa";
 
 registerApplication({
-  name: "@mf/auth-app",
-  app: () => import("http://localhost:8080/mf-auth-app.js"),
-  activeWhen: ["/"]
+  name: "@mf/canvas-ui",
+  app: () => import("//localhost:8081/mf-canvas-ui.js"),
+  activeWhen: (location) => location.pathname === "/"
 });
+
+registerApplication({
+  name: "@mf/form-builder",
+  app: () => import("//localhost:8082/mf-form-builder.js"),
+  activeWhen: ["/form-builder"]
+});
+
+registerApplication({
+  name: "@mf/form-viewer",
+  app: () => import("//localhost:8083/mf-form-viewer.js"),
+  activeWhen: ["/form-viewer"]
+});
+
 start();
