@@ -3,7 +3,7 @@ import { registerApplication, start } from "single-spa";
 registerApplication({
   name: "@mf/canvas-ui",
   app: () => import("//localhost:8081/mf-canvas-ui.js"),
-  activeWhen: (location) => location.pathname === "/"
+  activeWhen: (location) => true
 });
 
 registerApplication({

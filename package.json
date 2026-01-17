@@ -1,7 +1,11 @@
 {
   "name": "@mf/root-config",
   "scripts": {
-    "start": "webpack serve --port 9000 --env isLocal",
+    "start": "concurrently -n \"ROOT,CANVAS,BUILDER,VIEWER\" -c \"yellow,cyan,green,magenta\" \"npm run start:root\" \"npm run start:canvas\" \"npm run start:builder\" \"npm run start:viewer\"",
+    "start:root": "webpack serve --port 9000 --env isLocal",
+    "start:canvas": "cd ../canvas-ui && npm start",
+    "start:builder": "cd ../form-builder && npm start",
+    "start:viewer": "cd ../form-viewer && npm start",
     "lint": "eslint src --ext js",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
@@ -16,7 +20,7 @@
     "@babel/plugin-transform-runtime": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
     "@babel/runtime": "^7.23.3",
-    "concurrently": "^6.2.1",
+    "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-important-stuff": "^1.1.0",
